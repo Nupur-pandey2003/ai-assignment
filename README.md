@@ -17,3 +17,34 @@ def load_and_display_csv(file_path):
 load_and_display_csv('your_file.csv')
 ent
 
+import statistics
+
+def compute_statistics(data):
+    if not data:
+        return "Data list is empty."
+
+    mean = statistics.mean(data)
+    median = statistics.median(data)
+    try:
+        mode = statistics.mode(data)
+    except statistics.StatisticsError as e:
+        mode = str(e)  # Handles the case where there is no unique mode
+    variance = statistics.variance(data)
+    std_dev = statistics.stdev(data)
+
+    return {
+        "Mean": mean,
+        "Median": median,
+        "Mode": mode,
+        "Variance": variance,
+        "Standard Deviation": std_dev
+    }
+
+if __name__ == "__main__":
+    # Sample data
+    data = [1, 2, 2, 3, 4, 5, 5, 5, 6]
+    
+    stats = compute_statistics(data)
+    
+    for key, value in stats.items():
+        print(f"{key}: {value}")
